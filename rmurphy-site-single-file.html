@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R. Murphy Construction | Burbank ADU, Remodel & Addition Contractor</title>
+<style>
+/* =========================================================
+   R. MURPHY CONSTRUCTION — DESIGN TOKENS
+   Palette:  --navy (primary dark / structure)
+             --steel (secondary blue / trust)
+             --orange (brand accent, from logo mark)
+             --concrete (warm gray, section backgrounds)
+             --paper (near-white background)
+             --ink (body text)
+   Type:     Display  — 'Oswald' (condensed, drafting-stencil feel)
+             Body     — 'Inter'
+             Utility  — 'IBM Plex Mono' (spec labels, dimensions)
+   Signature: architectural "dimension line" dividers + corner
+             registration marks, used as section markers —
+             this is a construction-doc company, so the site's
+             structural language borrows from blueprints/spec
+             sheets rather than generic numbered badges.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --navy: #16233B;
+  --navy-2: #1F3050;
+  --steel: #2F5C85;
+  --orange: #E8622C;
+  --orange-dim: #c9531f;
+  --concrete: #E7E3DB;
+  --paper: #FAF8F4;
+  --ink: #1D1D1D;
+  --ink-soft: #4A4A46;
+  --line: #D8D2C4;
+  --radius: 2px;
+  --max: 1180px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:'Oswald',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+  color:var(--navy);
+  margin:0 0 0.5em;
+  line-height:1.1;
+}
+h1{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:700;}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;}
+h3{font-size:1.25rem;font-weight:600;}
+p{margin:0 0 1em;color:var(--ink-soft);}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.mono{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--orange);
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+.section{padding:88px 0;}
+.section--alt{background:var(--concrete);}
+.section--navy{background:var(--navy);color:#EDEEF0;}
+.section--navy h2, .section--navy h3{color:#fff;}
+.section--navy p{color:#B9C1CC;}
+
+/* Dimension-line divider: borrows the tick-marked measurement
+   line used on architectural drawings. Used as a structural
+   marker between page sections, not decoration. */
+.dim-rule{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 28px;color:var(--orange);
+}
+.dim-rule::before,.dim-rule::after{
+  content:"";flex:1;height:1px;background:var(--line);
+  background-image:repeating-linear-gradient(to right, var(--orange) 0 6px, transparent 6px 14px);
+  background-size:100% 1px;background-repeat:no-repeat;
+}
+.dim-rule span{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;}
+
+/* Corner registration mark — pulled from drawing-set title
+   blocks; used to frame the hero + key photos. */
+.reg-frame{position:relative;}
+.reg-frame::before,.reg-frame::after{
+  content:"";position:absolute;width:22px;height:22px;
+  border:2px solid var(--orange);
+}
+.reg-frame::before{top:-10px;left:-10px;border-right:none;border-bottom:none;}
+.reg-frame::after{bottom:-10px;right:-10px;border-left:none;border-top:none;}
+
+/* ---------- Header / Nav ---------- */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;max-width:var(--max);margin:0 auto;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand-mark{
+  width:34px;height:34px;background:var(--orange);
+  border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:'Oswald';font-weight:700;
+}
+.brand-name{font-family:'Oswald';font-weight:600;color:var(--navy);letter-spacing:0.02em;font-size:1.05rem;}
+.brand-name small{display:block;font-family:'IBM Plex Mono';font-size:0.6rem;letter-spacing:0.14em;color:var(--ink-soft);text-transform:uppercase;}
+
+nav.links{display:flex;gap:28px;align-items:center;}
+nav.links a{
+  font-family:'Oswald';font-weight:500;font-size:0.88rem;
+  text-transform:uppercase;letter-spacing:0.04em;
+  text-decoration:none;color:var(--navy);
+  padding:6px 2px;border-bottom:2px solid transparent;
+}
+nav.links a:hover, nav.links a.active{border-color:var(--orange);}
+.nav-cta{
+  background:var(--navy);color:#fff!important;
+  padding:10px 18px!important;border-radius:var(--radius);
+  border-bottom:none!important;
+}
+.nav-cta:hover{background:var(--orange-dim);}
+
+/* dropdown */
+.has-drop{position:relative;}
+.dropdown{
+  position:absolute;top:100%;left:0;background:#fff;
+  border:1px solid var(--line);min-width:200px;
+  box-shadow:0 12px 24px rgba(22,35,59,0.12);
+  display:none;padding:6px 0;
+}
+.has-drop:hover .dropdown{display:block;}
+.dropdown a{display:block;padding:10px 16px;font-size:0.82rem;border-bottom:none!important;}
+.dropdown a:hover{background:var(--concrete);}
+
+.mobile-toggle{display:none;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Oswald';font-weight:600;font-size:0.9rem;
+  text-transform:uppercase;letter-spacing:0.03em;
+  padding:14px 26px;border-radius:var(--radius);
+  text-decoration:none;border:2px solid transparent;cursor:pointer;
+}
+.btn--primary{background:var(--orange);color:#fff;}
+.btn--primary:hover{background:var(--orange-dim);}
+.btn--ghost{border-color:currentColor;color:var(--navy);background:transparent;}
+.btn--ghost:hover{background:var(--navy);color:#fff;}
+.section--navy .btn--ghost{color:#fff;}
+
+/* ---------- Hero ---------- */
+.hero{
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;
+  align-items:center;padding:72px 0 96px;
+}
+.hero-copy .mono{margin-bottom:14px;display:block;}
+.hero-copy p{font-size:1.08rem;max-width:46ch;}
+.hero-actions{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+.hero-photo{position:relative;}
+.hero-photo img{aspect-ratio:4/5;object-fit:cover;background:var(--concrete);}
+.placeholder-img{
+  background:repeating-linear-gradient(45deg, var(--concrete), var(--concrete) 12px, #ded9cd 12px, #ded9cd 24px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);font-family:'IBM Plex Mono';font-size:0.75rem;
+  text-align:center;padding:20px;border:1px dashed #b7ae9a;
+}
+.stat-badge{
+  position:absolute;bottom:-24px;left:-24px;background:var(--navy);
+  color:#fff;padding:18px 22px;
+  display:flex;flex-direction:column;
+}
+.stat-badge b{font-family:'Oswald';font-size:1.8rem;color:var(--orange);}
+.stat-badge span{font-family:'IBM Plex Mono';font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;}
+
+/* ---------- Service cards ---------- */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.service-card{
+  background:#fff;border:1px solid var(--line);padding:0;
+  text-decoration:none;color:inherit;display:block;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 28px rgba(22,35,59,0.12);}
+.service-card .thumb{aspect-ratio:16/10;}
+.service-card .body{padding:22px;}
+.service-card .mono{margin-bottom:8px;display:block;}
+.service-card p{font-size:0.92rem;margin-bottom:14px;}
+.service-card .go{font-family:'Oswald';font-size:0.8rem;text-transform:uppercase;color:var(--orange);font-weight:600;}
+
+/* ---------- Alternating photo/text rows (service detail pages) ---------- */
+.feature-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;
+  align-items:center;padding:56px 0;border-bottom:1px solid var(--line);
+}
+.feature-row:last-child{border-bottom:none;}
+.feature-row.reverse .feature-photo{order:2;}
+.feature-row .feature-photo img,.feature-row .feature-photo .placeholder-img{aspect-ratio:5/4;object-fit:cover;}
+.feature-row ul{padding-left:18px;color:var(--ink-soft);margin:0 0 1em;}
+.feature-row li{margin-bottom:6px;}
+
+/* ---------- Testimonials (horizontal, arrow-through) ---------- */
+.testi-wrap{position:relative;max-width:760px;margin:0 auto;}
+.testi-track{overflow:hidden;}
+.testi-slides{display:flex;transition:transform .4s ease;}
+.testi-slide{min-width:100%;padding:0 8px;text-align:center;}
+.testi-quote{
+  font-family:'Oswald';font-weight:400;font-size:1.35rem;
+  color:#fff;line-height:1.4;margin-bottom:22px;
+}
+.testi-name{font-family:'IBM Plex Mono';font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);}
+.testi-stars{color:var(--orange);letter-spacing:3px;margin-bottom:14px;font-size:1.1rem;}
+.testi-arrows{display:flex;justify-content:center;gap:16px;margin-top:28px;}
+.testi-arrow{
+  width:42px;height:42px;border:1px solid rgba(255,255,255,0.35);
+  background:transparent;color:#fff;border-radius:50%;
+  cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;
+}
+.testi-arrow:hover{background:var(--orange);border-color:var(--orange);}
+.testi-dots{display:flex;justify-content:center;gap:8px;margin-top:16px;}
+.testi-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);}
+.testi-dots span.active{background:var(--orange);}
+
+/* ---------- Process / walkthrough steps ---------- */
+.process-list{display:flex;flex-direction:column;}
+.process-step{
+  display:grid;grid-template-columns:120px 1fr;gap:32px;
+  padding:32px 0;border-top:1px solid var(--line);
+}
+.process-step:last-child{border-bottom:1px solid var(--line);}
+.process-step .stage{font-family:'IBM Plex Mono';font-size:0.72rem;color:var(--orange);letter-spacing:0.1em;}
+.process-step .stage-len{color:var(--ink-soft);font-size:0.72rem;display:block;margin-top:4px;}
+
+/* ---------- Before / After ---------- */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);}
+.ba-grid figure{margin:0;position:relative;background:#fff;}
+.ba-grid img,.ba-grid .placeholder-img{aspect-ratio:4/3;object-fit:cover;}
+.ba-grid figcaption{
+  position:absolute;top:12px;left:12px;
+  background:var(--navy);color:#fff;font-family:'IBM Plex Mono';
+  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;
+}
+
+/* ---------- Reviews-style "Why Choose Us" ---------- */
+.reason-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.reason-card{background:#fff;border:1px solid var(--line);padding:22px;}
+.reason-stars{color:var(--orange);margin-bottom:10px;letter-spacing:2px;}
+.reason-card h3{font-size:1rem;margin-bottom:8px;}
+.reason-card p{font-size:0.88rem;margin:0;}
+
+/* ---------- Contact ---------- */
+.contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;}
+.form-box{
+  border:2px solid var(--navy);padding:36px;background:#fff;
+  position:relative;
+}
+.form-box::before{
+  content:"Contact";position:absolute;top:-13px;left:24px;
+  background:var(--paper);padding:0 10px;
+  font-family:'IBM Plex Mono';font-size:0.68rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--orange);
+}
+.field{margin-bottom:18px;}
+.field label{
+  display:block;font-family:'IBM Plex Mono';font-size:0.68rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;
+}
+.field input,.field textarea,.field select{
+  width:100%;padding:12px 14px;border:1px solid var(--line);
+  background:var(--paper);font-family:'Inter';font-size:0.95rem;color:var(--ink);
+  border-radius:var(--radius);
+}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange);
+}
+.field textarea{resize:vertical;min-height:110px;}
+
+.info-block{margin-bottom:26px;}
+.info-block .mono{margin-bottom:6px;}
+.info-block a{color:var(--navy);text-decoration:none;font-weight:600;}
+
+/* ---------- Footer ---------- */
+footer.site{background:var(--navy);color:#B9C1CC;padding:56px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px;}
+.footer-grid h4{color:#fff;font-size:0.95rem;margin-bottom:14px;}
+.footer-grid a{display:block;color:#B9C1CC;text-decoration:none;font-size:0.9rem;margin-bottom:8px;}
+.footer-grid a:hover{color:var(--orange);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.12);padding-top:20px;
+  display:flex;justify-content:space-between;font-size:0.78rem;color:#7C8798;flex-wrap:wrap;gap:10px;
+}
+.lic{font-family:'IBM Plex Mono';letter-spacing:0.06em;}
+
+/* ---------- Utility ---------- */
+.cta-band{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;
+}
+[data-needs]{position:relative;}
+
+@media (max-width: 860px){
+  .nav{padding:14px 20px;}
+  nav.links{position:fixed;top:66px;left:0;right:0;background:var(--paper);
+    flex-direction:column;align-items:flex-start;padding:20px;gap:8px;
+    border-bottom:1px solid var(--line);display:none;}
+  nav.links.open{display:flex;}
+  .mobile-toggle{display:block;background:none;border:1px solid var(--line);padding:8px 12px;border-radius:var(--radius);}
+  .dropdown{position:static;box-shadow:none;border:none;padding-left:12px;display:block;}
+  .hero{grid-template-columns:1fr;padding-top:40px;}
+  .stat-badge{position:static;margin-top:20px;display:inline-flex;}
+  .card-grid{grid-template-columns:1fr;}
+  .feature-row,.feature-row.reverse{grid-template-columns:1fr;}
+  .feature-row.reverse .feature-photo{order:0;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .reason-grid{grid-template-columns:1fr 1fr;}
+  .process-step{grid-template-columns:1fr;gap:8px;}
+  .ba-grid{grid-template-columns:1fr;}
+}
+
+.page-section { scroll-margin-top: 80px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a href="#home" class="brand">
+      <span class="brand-mark">RM</span>
+      <span class="brand-name">R. Murphy Construction<small>Lic. #1130287 &middot; Burbank, CA</small></span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <div class="has-drop">
+        <a href="#services">Services</a>
+        <div class="dropdown">
+          <a href="#adu">ADU Units</a>
+          <a href="#remodels">Remodels</a>
+          <a href="#additions">Additions</a>
+          <a href="#services">View All Services</a>
+        </div>
+      </div>
+      <a href="#portfolio">Project Portfolio</a>
+      <a href="#process">Our Process</a>
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+    </nav>
+    <button class="mobile-toggle">Menu</button>
+  </div>
+</header>
+
+<section id="home" class="page-section">
+
+  <section class="section" style="padding-top:56px;">
+    <div class="wrap hero">
+      <div class="hero-copy">
+        <span class="mono">Licensed &amp; Insured &middot; CSLB #1130287</span>
+        <h1>Built to the plan.<br>Standing after the punch list.</h1>
+        <p>R. Murphy Construction handles ADUs, remodels, and additions across the Burbank / Los Angeles area — one crew, one point of contact, from demo to final walkthrough.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn--primary">Request a Quote</a>
+          <a href="#process" class="btn btn--ghost">See How a Project Runs</a>
+        </div>
+      </div>
+      <div class="hero-photo reg-frame">
+        <div class="placeholder-img" style="aspect-ratio:4/5;">[NEEDS: hero photo — completed project, e.g. Karen St. garage build-out]</div>
+        <div class="stat-badge">
+          <b data-needs="years in business">[X]+</b>
+          <span>Years in Business</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>What We Build</span></div>
+      <h2 style="max-width:20ch;">Three ways we add space and value to your home</h2>
+      <p style="max-width:60ch;">Every project below runs through the same process: fixed scope, written change orders, and a single crew that sees it through.</p>
+      <div class="card-grid" style="margin-top:36px;">
+        <a href="#adu" class="service-card">
+          <div class="thumb placeholder-img">[NEEDS: ADU project photo]</div>
+          <div class="body">
+            <span class="mono">01 &middot; ADU</span>
+            <h3>ADU Units</h3>
+            <p>Detached and garage-conversion accessory dwelling units, permit-ready and built for rental or family use.</p>
+            <span class="go">Explore ADUs &rarr;</span>
+          </div>
+        </a>
+        <a href="#remodels" class="service-card">
+          <div class="thumb placeholder-img">[NEEDS: remodel project photo]</div>
+          <div class="body">
+            <span class="mono">02 &middot; Remodel</span>
+            <h3>Remodels</h3>
+            <p>Kitchen, bath, and whole-interior remodels — from finish selection through final inspection.</p>
+            <span class="go">Explore Remodels &rarr;</span>
+          </div>
+        </a>
+        <a href="#additions" class="service-card">
+          <div class="thumb placeholder-img">[NEEDS: addition project photo]</div>
+          <div class="body">
+            <span class="mono">03 &middot; Addition</span>
+            <h3>Home Additions</h3>
+            <p>Room additions and structural expansions that match your home's existing footprint and style.</p>
+            <span class="go">Explore Additions &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="dim-rule"><span>Featured Project</span></div>
+      <div class="feature-row" style="border-bottom:none;padding-bottom:0;">
+        <div class="feature-photo">
+          <div class="placeholder-img" style="aspect-ratio:5/4;">[NEEDS: before/after or in-progress photo of a flagship job]</div>
+        </div>
+        <div>
+          <h2>See a full project, start to finish</h2>
+          <p>Walk through what an average timeline actually looks like — from first site visit to final walkthrough — using a real job as the example.</p>
+          <a href="#process" class="btn btn--ghost">View the Walkthrough</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="wrap">
+      <div class="dim-rule"><span>Satisfied Homeowners</span></div>
+      <div class="testi-wrap">
+        <div class="testi-track">
+          <div class="testi-slides">
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-arrows">
+          <button class="testi-arrow prev" aria-label="Previous testimonial">&larr;</button>
+          <button class="testi-arrow next" aria-label="Next testimonial">&rarr;</button>
+        </div>
+        <div class="testi-dots"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>Why Homeowners Choose Us</span></div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Licensed &amp; Insured</h3>
+          <p>CA Contractor License #1130287, active and verifiable.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Fixed Written Scope</h3>
+          <p>Every job runs on a signed proposal — no verbal change orders, ever.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>One Crew, Start to Finish</h3>
+          <p>The team that demos your project is the team that hands you the keys.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Local to Burbank</h3>
+          <p>[NEEDS: service-area radius / years serving the area]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Ready to scope your project?</h2>
+        <p style="margin:0;">Tell us about the space and we'll schedule a walkthrough.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Request a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="services" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">Construction Services</span>
+      <h1 style="margin-top:10px;">One contractor. Three ways to add space.</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">This page lists every service we offer — the same three categories you'll find in the navigation above, so however you got here, you land in the same place.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap card-grid">
+      <a href="#adu" class="service-card">
+        <div class="thumb placeholder-img">[NEEDS: ADU project photo]</div>
+        <div class="body">
+          <span class="mono">01 &middot; ADU</span>
+          <h3>ADU Units</h3>
+          <p>Detached and garage-conversion accessory dwelling units, permit-ready and built for rental or family use.</p>
+          <span class="go">Explore ADUs &rarr;</span>
+        </div>
+      </a>
+      <a href="#remodels" class="service-card">
+        <div class="thumb placeholder-img">[NEEDS: remodel project photo]</div>
+        <div class="body">
+          <span class="mono">02 &middot; Remodel</span>
+          <h3>Remodels</h3>
+          <p>Kitchen, bath, and whole-interior remodels — from finish selection through final inspection.</p>
+          <span class="go">Explore Remodels &rarr;</span>
+        </div>
+      </a>
+      <a href="#additions" class="service-card">
+        <div class="thumb placeholder-img">[NEEDS: addition project photo]</div>
+        <div class="body">
+          <span class="mono">03 &middot; Addition</span>
+          <h3>Home Additions</h3>
+          <p>Room additions and structural expansions that match your home's existing footprint and style.</p>
+          <span class="go">Explore Additions &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Not sure which category fits?</h2>
+        <p style="margin:0;">Tell us what you're picturing — we'll tell you which path (and permits) it needs.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="adu" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">01 &middot; ADU Units</span>
+      <h1 style="margin-top:10px;max-width:18ch;">Accessory dwelling units, built to rent, house family, or add value</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">From garage conversions to detached new-builds, we handle design coordination, permitting, and construction as one scope — not three separate headaches.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — detached ADU exterior]</div>
+        </div>
+        <div>
+          <span class="mono">Detached ADUs</span>
+          <h2 style="margin-top:10px;">A fully separate structure on your lot</h2>
+          <p>Built from the foundation up, sized to your lot's setback and coverage limits. Includes its own utility connections, kitchen, and bath — ready to rent or house family independently.</p>
+          <ul>
+            <li>Site survey and setback verification</li>
+            <li>Foundation, framing, and full MEP rough-in</li>
+            <li>Permit submission and inspection coordination</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — garage-to-ADU conversion, in progress or finished]</div>
+        </div>
+        <div>
+          <span class="mono">Garage Conversion ADUs</span>
+          <h2 style="margin-top:10px;">The fastest path to a livable unit</h2>
+          <p>Converting an existing garage is typically faster and less expensive than a ground-up build, since the structure's shell is often already in place. Scope usually includes framing, electrical, plumbing, HVAC, insulation, drywall, and flooring.</p>
+          <ul>
+            <li>Electrical service upgrade where needed</li>
+            <li>New plumbing runs for kitchen/bath</li>
+            <li>Mini-split HVAC sized to the unit</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — finished ADU interior]</div>
+        </div>
+        <div>
+          <span class="mono">Interior Finish</span>
+          <h2 style="margin-top:10px;">Finishes selected to fit your budget</h2>
+          <p>We work from a written allowance schedule for doors, flooring, and fixtures — you approve every selection before it's ordered, and unused allowance is credited back at final accounting.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>Before / After</span></div>
+      <div class="ba-grid">
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: before photo]</div>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: after photo]</div>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:20px;">See the full timeline for a project like this on our <a href="#process" style="color:var(--navy);font-weight:600;">Our Process</a> page.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Considering an ADU?</h2>
+        <p style="margin:0;">We'll walk your property and tell you what's realistic before you commit to a design.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="remodels" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">02 &middot; Remodels</span>
+      <h1 style="margin-top:10px;max-width:20ch;">Kitchen, bath, and whole-interior remodels done in the right order</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">Demo, rough-in, finish — sequenced so you're not paying to redo work because a step got skipped. One crew from first swing of the hammer to final walkthrough.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — remodeled kitchen]</div>
+        </div>
+        <div>
+          <span class="mono">Kitchen Remodels</span>
+          <h2 style="margin-top:10px;">Layout, cabinetry, and finish in one scope</h2>
+          <p>From a cosmetic refresh to a full gut-and-reconfigure, including cabinetry, countertops, plumbing relocation, and electrical for new appliance layouts.</p>
+          <ul>
+            <li>Cabinetry and countertop coordination</li>
+            <li>Plumbing and electrical relocation</li>
+            <li>Flooring and lighting finish-out</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — remodeled bathroom]</div>
+        </div>
+        <div>
+          <span class="mono">Bathroom Remodels</span>
+          <h2 style="margin-top:10px;">Waterproofing done right, every time</h2>
+          <p>Tile, waterproofing membrane, fixture rough-in, and ventilation — the details that don't show up in photos but decide whether the room holds up in five years.</p>
+          <ul>
+            <li>Waterproofing membrane at all wet walls</li>
+            <li>Fixture and valve rough-in to code</li>
+            <li>Exhaust ventilation sized to room volume</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — whole-interior remodel]</div>
+        </div>
+        <div>
+          <span class="mono">Whole-Interior Remodels</span>
+          <h2 style="margin-top:10px;">Finishes selected to fit your budget</h2>
+          <p>We work from a written allowance schedule for doors, flooring, and fixtures — you approve every selection before it's ordered, and unused allowance is credited back at final accounting.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>Before / After</span></div>
+      <div class="ba-grid">
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: before photo]</div>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: after photo]</div>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:20px;">See the full timeline for a project like this on our <a href="#process" style="color:var(--navy);font-weight:600;">Our Process</a> page.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Planning a remodel?</h2>
+        <p style="margin:0;">We'll walk the space and scope it before you commit to finishes.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="additions" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">03 &middot; Additions</span>
+      <h1 style="margin-top:10px;max-width:22ch;">Room additions that read like they were always part of the house</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">Structural tie-ins, roofline matching, and exterior finish blending — the details that decide whether an addition looks bolted-on or built-in.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — addition exterior, showing roofline match]</div>
+        </div>
+        <div>
+          <span class="mono">Room Additions</span>
+          <h2 style="margin-top:10px;">Foundation-to-roof structural tie-in</h2>
+          <p>New foundation and framing engineered to tie cleanly into your home's existing structure — matched roofline, matched load path, no visible seam.</p>
+          <ul>
+            <li>Structural engineering for the tie-in point</li>
+            <li>Foundation, framing, and roofline matching</li>
+            <li>Permit submission and inspection coordination</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — addition exterior finish blending with existing stucco/siding]</div>
+        </div>
+        <div>
+          <span class="mono">Exterior Finish Matching</span>
+          <h2 style="margin-top:10px;">Stucco, siding, and paint matched to the original</h2>
+          <p>We match texture, color, and reveal lines on the exterior so the addition doesn't read as an obvious add-on from the street.</p>
+          <ul>
+            <li>Stucco/siding texture and color matching</li>
+            <li>Roofing material matched to existing</li>
+            <li>Paint blending across the tie-in seam</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-photo">
+          <div class="placeholder-img">[NEEDS: photo — finished addition interior]</div>
+        </div>
+        <div>
+          <span class="mono">Interior Finish</span>
+          <h2 style="margin-top:10px;">Finishes selected to fit your budget</h2>
+          <p>We work from a written allowance schedule for doors, flooring, and fixtures — you approve every selection before it's ordered, and unused allowance is credited back at final accounting.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>Before / After</span></div>
+      <div class="ba-grid">
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: before photo]</div>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: after photo]</div>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:20px;">See the full timeline for a project like this on our <a href="#process" style="color:var(--navy);font-weight:600;">Our Process</a> page.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Planning an addition?</h2>
+        <p style="margin:0;">We'll assess the structural tie-in before you commit to a design.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="portfolio" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">Project Portfolio</span>
+      <h1 style="margin-top:10px;">Completed work, by category</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">A running record of ADUs, remodels, and additions we've built. Filter by type below.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="dim-rule"><span>ADU Projects</span></div>
+      <div class="card-grid">
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — ADU #1]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Garage-to-ADU Conversion</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — ADU #2]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Detached ADU</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — ADU #3]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Garage-to-ADU Conversion</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" style="padding-top:64px;">
+    <div class="wrap">
+      <div class="dim-rule"><span>Remodel Projects</span></div>
+      <div class="card-grid">
+        <div class="service-card" style="cursor:default;background:#fff;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — remodel #1]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Kitchen Remodel</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;background:#fff;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — remodel #2]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Bathroom Remodel</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;background:#fff;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — remodel #3]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Whole-Interior Remodel</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:64px;">
+    <div class="wrap">
+      <div class="dim-rule"><span>Addition Projects</span></div>
+      <div class="card-grid">
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — addition #1]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Primary Bedroom Addition</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — addition #2]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Second-Story Addition</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+        <div class="service-card" style="cursor:default;">
+          <div class="thumb placeholder-img">[NEEDS: project photo — addition #3]</div>
+          <div class="body">
+            <span class="mono">[NEEDS: neighborhood/city]</span>
+            <h3>Family Room Addition</h3>
+            <p>[NEEDS: 1–2 line project summary]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Want to see one of these in detail?</h2>
+        <p style="margin:0;">Our process page walks a full project start to finish.</p>
+      </div>
+      <a href="#process" class="btn btn--primary">View the Walkthrough</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="process" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap">
+      <span class="mono">Our Process</span>
+      <h1 style="margin-top:10px;max-width:22ch;">One project, start to finish: [NEEDS: project name, e.g. "Karen St. Garage ADU"]</h1>
+      <p style="max-width:60ch;font-size:1.05rem;">Rather than describe our process in the abstract, here's what an average project actually looks like — using one real job as the example.</p>
+    </div>
+  </section>
+
+  <section class="section section--alt" style="padding-top:40px;">
+    <div class="wrap">
+      <div class="dim-rule"><span>Before / After</span></div>
+      <div class="ba-grid">
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: before photo]</div>
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <div class="placeholder-img" style="height:100%;">[NEEDS: after photo]</div>
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="dim-rule"><span>Typical Timeline</span></div>
+      <div class="process-list">
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 01</span>
+            <span class="stage-len">[NEEDS: duration, e.g. "1–2 weeks"]</span>
+          </div>
+          <div>
+            <h3>Site Visit &amp; Proposal</h3>
+            <p>We walk the space, discuss scope and budget, and send a written proposal with itemized costs and allowances — no verbal estimates.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 02</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Contract &amp; Permitting</h3>
+            <p>Once the proposal is signed, we finalize the construction agreement and file for any required permits before mobilizing on site.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 03</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Site Prep &amp; Demo</h3>
+            <p>Temporary facilities go up, demo begins, and debris is hauled off. This is when the mobilization draw is invoiced.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 04</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Framing &amp; Structural</h3>
+            <p>Framing goes in for any new walls, ceilings, or structural tie-ins, inspected before it's covered by drywall.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 05</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Rough-In: Electrical, Plumbing, HVAC</h3>
+            <p>All in-wall systems are run and inspected before insulation and drywall close the walls.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 06</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Insulation &amp; Drywall</h3>
+            <p>Walls and ceilings are insulated and closed up — the space starts to look like a finished room.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 07</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Finish: Flooring, Cabinetry, Doors, Paint</h3>
+            <p>Allowance selections (flooring, doors, cabinetry, fixtures) get installed once you've approved each one in writing.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div>
+            <span class="stage">Stage 08</span>
+            <span class="stage-len">[NEEDS: duration]</span>
+          </div>
+          <div>
+            <h3>Final Walkthrough</h3>
+            <p>We walk the finished space together, note any punch-list items, and close out final payment once they're resolved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Ready to start your own timeline?</h2>
+        <p style="margin:0;">Get a written proposal before any work begins.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="about" class="page-section">
+
+  <section class="section" style="padding-bottom:40px;">
+    <div class="wrap hero" style="padding:0;">
+      <div class="hero-copy">
+        <span class="mono">About R. Murphy Construction</span>
+        <h1 style="margin-top:10px;">One contractor, one crew, one point of contact</h1>
+        <p>R. Murphy Construction is a licensed California general contractor (Lic. #1130287) based in Burbank, building ADUs, remodels, and additions across the greater Los Angeles area.</p>
+        <p>[NEEDS: founding story — how long Ryan Murphy has been contracting, what led to starting the company, any specialty background]</p>
+      </div>
+      <div class="hero-photo reg-frame">
+        <div class="placeholder-img" style="aspect-ratio:4/5;">[NEEDS: photo — Ryan Murphy on a jobsite]</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <div class="dim-rule"><span>Why Homeowners Choose Us</span></div>
+      <div class="reason-grid">
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Licensed &amp; Insured</h3>
+          <p>CA Contractor License #1130287, active and verifiable through CSLB.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Fixed Written Scope</h3>
+          <p>Every job runs on a signed proposal with itemized allowances — no verbal change orders.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>One Crew, Start to Finish</h3>
+          <p>The team that demos your project is the team that hands you the keys.</p>
+        </div>
+        <div class="reason-card">
+          <div class="reason-stars">★★★★★</div>
+          <h3>Local to Burbank</h3>
+          <p>[NEEDS: service-area radius / years serving the area]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy">
+    <div class="wrap">
+      <div class="dim-rule"><span>Satisfied Homeowners</span></div>
+      <div class="testi-wrap">
+        <div class="testi-track">
+          <div class="testi-slides">
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+            <div class="testi-slide">
+              <div class="testi-stars">★★★★★</div>
+              <p class="testi-quote">"[NEEDS: testimonial quote — placeholder pending confirmation from client]"</p>
+              <div class="testi-name">— [Client Name], Burbank</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-arrows">
+          <button class="testi-arrow prev" aria-label="Previous testimonial">&larr;</button>
+          <button class="testi-arrow next" aria-label="Next testimonial">&rarr;</button>
+        </div>
+        <div class="testi-dots"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cta-band">
+      <div>
+        <h2 style="margin-bottom:6px;">Ready to talk through your project?</h2>
+        <p style="margin:0;">Reach out and we'll schedule a walkthrough.</p>
+      </div>
+      <a href="#contact" class="btn btn--primary">Get a Quote</a>
+    </div>
+  </section>
+
+</section>
+
+<section id="contact" class="page-section">
+
+  <section class="section">
+    <div class="wrap">
+      <span class="mono">Get a Quote</span>
+      <h1 style="margin-top:10px;">Tell us about your project</h1>
+      <p style="max-width:60ch;font-size:1.05rem;margin-bottom:48px;">Fill out the form or call directly — we'll schedule a walkthrough and follow up with a written proposal.</p>
+
+      <div class="contact-grid">
+        <div>
+          <div class="info-block">
+            <span class="mono">Phone</span>
+            <p style="margin:0;"><a href="tel:8185905315">(818) 590-5315</a></p>
+          </div>
+          <div class="info-block">
+            <span class="mono">Service Area</span>
+            <p style="margin:0;">Burbank, CA and the greater Los Angeles area</p>
+          </div>
+          <div class="info-block">
+            <span class="mono">License</span>
+            <p style="margin:0;">CA Contractor License #1130287 (CSLB compliant)</p>
+          </div>
+          <div class="info-block">
+            <span class="mono">Response Time</span>
+            <p style="margin:0;">[NEEDS: typical response time, e.g. "within 1 business day"]</p>
+          </div>
+        </div>
+
+        <form class="form-box" onsubmit="event.preventDefault(); alert('[NEEDS: connect this form to an email/CRM endpoint]');">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="project-type">Project Type</label>
+            <select id="project-type" name="project-type">
+              <option value="adu">ADU</option>
+              <option value="remodel">Remodel</option>
+              <option value="addition">Addition</option>
+              <option value="other">Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="address">Project Address</label>
+            <input type="text" id="address" name="address">
+          </div>
+          <div class="field">
+            <label for="message">Tell Us About the Project</label>
+            <textarea id="message" name="message" placeholder="Scope, timeline, budget range if known..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;">Send Request</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>R. Murphy Construction</h4>
+        <p style="color:#B9C1CC;font-size:0.9rem;max-width:32ch;">Residential ADUs, remodels, and additions serving Burbank and the greater Los Angeles area.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#adu">ADU Units</a>
+        <a href="#remodels">Remodels</a>
+        <a href="#additions">Additions</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#about">About</a>
+        <a href="#portfolio">Project Portfolio</a>
+        <a href="#process">Our Process</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:8185905315">(818) 590-5315</a>
+        <a href="#contact">Get a Quote</a>
+        <span style="display:block;font-size:0.9rem;">Burbank, CA 91505</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="lic">CA Contractor License #1130287</span>
+      <span>&copy; <span id="year"></span> R. Murphy Construction. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile nav toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.mobile-toggle');
+  const links = document.querySelector('nav.links');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  }
+
+  // Testimonial carousels (horizontal, arrow-through) - handles multiple on one page
+  document.querySelectorAll('.testi-wrap').forEach((wrap) => {
+    const track = wrap.querySelector('.testi-slides');
+    if (!track) return;
+    const slides = track.querySelectorAll('.testi-slide');
+    const dots = wrap.querySelectorAll('.testi-dots span');
+    let i = 0;
+    const go = (n) => {
+      i = (n + slides.length) % slides.length;
+      track.style.transform = `translateX(-${i * 100}%)`;
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    };
+    wrap.querySelector('.testi-arrow.prev')?.addEventListener('click', () => go(i - 1));
+    wrap.querySelector('.testi-arrow.next')?.addEventListener('click', () => go(i + 1));
+    dots.forEach((d, idx) => d.addEventListener('click', () => go(idx)));
+    go(0);
+  });
+});
+
+</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
